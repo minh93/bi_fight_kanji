@@ -19,3 +19,4 @@ Vu Duc Quy
 *Ruby 2.2.0
 *Sqlite
 
+Ver 1.2
