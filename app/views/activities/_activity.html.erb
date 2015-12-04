@@ -6,6 +6,11 @@
     </div>
     <div class="col-md-4">
       <%= activity.type_of_activity %>
+      <% if activity.targetable_type == "UserGoal" %>
+        <%= link_to "more...", user_goals_path %> 
+      <% elsif activity.targetable_type == "Lesson" %>
+        <%= link_to "more...", lesson_path(activity.targetable_id) %>
+      <% end %>
     </div>
     <div class="col-md-4 time-ago">
       <%= activity.created_at.to_formatted_s :short %>

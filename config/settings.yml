@@ -20,3 +20,4 @@ word:
 activity_type:
   take_lesson: "Take a lesson!"
   follow_user: "Follow user"
+  create_goal: "You have created goal! Go!"
