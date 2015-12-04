@@ -3,6 +3,15 @@
 
 <h1>User Goals</h1>
 <%= link_to 'New User goal', new_user_goal_path %>
+
+  <%= bar_chart [
+    {name: "漢字数を記録", data: @word_goals.to_a.group_by{|x| x.deadline}
+      .map{|group| [group[0].strftime("%m/%d/%Y"), group[1].map(&:number_of_words).sum]}},
+    {name: "漢字数を勉強した。", data: @word_logs.to_a.group_by{|x| x.created_at}
+      .map{|group| [group[0].strftime("%m/%d/%Y"), group[1].map(&:number_of_word).sum]}}
+    ] %>
+
+
 <table class="table">
   <thead>
     <tr>
@@ -11,12 +20,7 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-  <%= line_chart [
-    {name: "goal", data: @word_goals.to_a.group_by{|x| x.deadline}
-      .map{|group| [group[0].strftime("%m/%d/%Y"), group[1].map(&:number_of_words).sum]}},
-    {name: "log", data: @word_logs.to_a.group_by{|x| x.created_at}
-      .map{|group| [group[0].strftime("%m/%d/%Y"), group[1].map(&:number_of_word).sum]}}
-    ] %>
+  
   <tbody>
     <% @user_goals.each do |user_goal| %>
       <tr>
