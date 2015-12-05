@@ -3,6 +3,15 @@
 <div>
   <%= render "users/search" %>
 </div>
+
+<ul class="user_range">
+  <% if @users.present? %>
+    <%= render @users %>
+  <% else %>
+    <p><%= t ".no_result", result: params[:search] %>.</p>
+  <% end %>
+</ul>
+
 <ul class="users">
   <% if @users.present? %>
     <%= render @users %>
