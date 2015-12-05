@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :user_goals
   has_many :user_logs
 
+  mount_uploader :avatar, AvatarUploader
+
   has_secure_password
 
   validates :email,
@@ -31,6 +33,7 @@ class User < ActiveRecord::Base
     length: {minimum: 5}
   validates :name, presence: true,
     length: {maximum: 50}
+  validate :avatar_size
   scope :search, ->query{where "name LIKE ? OR email LIKE ?", "%#{query}%", "%#{query}%"}
   scope :all_admin, ->{where "role = 1"}
 
@@ -95,5 +98,11 @@ class User < ActiveRecord::Base
 
   def reset_password
     update_attributes password_digest: User.digest(Settings.user.default_password)
+  end
+
+  def avatar_size
+    if avatar.size > 5.megabytes
+      errors.add(:avatar, "should be less than 5MB")
+    end
   end
 end

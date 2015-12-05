@@ -1,11 +1,10 @@
 <li>
-  <%= gravatar_for user %>
+  <%= image_tag user.avatar.url if user.avatar? %>
   <% if current_user? user %>
     <%= link_to user.name, user_path(user) %>
   <% else %>
     <%= link_to user.name, admin_user_path(user) %>
   <% end %>
-  <%= user.email %>
   <% unless current_user? user %>
     | <%= link_to t(".btn_delete"), admin_user_path(user), method: :delete,
       data: {confirm: t(".confirm")} %>

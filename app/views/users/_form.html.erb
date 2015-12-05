@@ -1,17 +1,21 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, html: { multipart: true } do |f| %>
   <%= render "shared/error_messages" %>
-  <%= f.label :name, t(".name") %>
+  <%= f.label :name, t("users.new.name") %>
   <%= f.text_field :name, class: "form-control" %>
 
-  <%= f.label :email, t(".email") %>
+  <%= f.label :email, t("users.new.email") %>
   <%= f.email_field :email, class: "form-control" %>
 
-  <%= f.label :password, t(".password") %>
+  <%= f.label :password, t("users.new.password") %>
   <%= f.password_field :password, class: "form-control" %>
 
-  <%= f.label :password_confirmation, t(".confirmation") %>
+  <%= f.label :password_confirmation, t("users.new.confirmation") %>
   <%= f.password_field :password_confirmation, class: "form-control" %>
-  
+  <%= f.label :avatar, t("users.new.avatar") %>
+  <span class="picture">
+    <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png' %>
+  </span>
+
   <%= f.submit t(".btn_submit_#{controller.action_name}"),
     class: "btn btn-primary", id: "btn-signup" %>
 <% end %>
