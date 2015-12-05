@@ -5,10 +5,10 @@
 </div>
 
 <ul class="user_range">
-  <% if @users.present? %>
-    <%= render @users %>
+  <% if @top_ranges.present? %>
+    <%= render  "users/user_range_list" %>
   <% else %>
-    <p><%= t ".no_result", result: params[:search] %>.</p>
+   
   <% end %>
 </ul>
 
