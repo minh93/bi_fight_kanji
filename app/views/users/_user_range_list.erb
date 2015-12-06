@@ -1,11 +1,9 @@
 <% @top_ranges.each do |tmp| %>
-
- <% if tmp.total_word  %>
-<li>
-  <%=  tmp.avatar.url if tmp.avatar? %>
-  <%=  link_to tmp.name, user_path(tmp) %>
-  learned <%=  tmp.total_word.to_s %> words
-  
-</li>
-<% end %>
+  <% if tmp.total_word  %>
+  <li class="row">
+    <%=  tmp.avatar.url if tmp.avatar? %>
+    <%=  link_to tmp.name, user_path(tmp) %>
+    learned <%=  tmp.total_word.to_s %> words
+  </li>
+  <% end %>
 <% end %>

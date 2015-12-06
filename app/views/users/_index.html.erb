@@ -1,22 +1,20 @@
 <h1><%= t ".h1index" %></h1>
 <%= will_paginate %>
-<div>
-  <%= render "users/search" %>
+<div class="container">
+  <div class="row">
+    <%= render "users/search" %>
+  </div>
+
+  <div class="row container">
+    <div class="row">
+      <ul class="users">
+        <% if @users.present? %>
+        <%= render @users %>
+        <% else %>
+        <p><%= t ".no_result", result: params[:search] %>.</p>
+        <% end %>
+      </ul>
+      <%= will_paginate %>
+    </div>    
+  </div>
 </div>
-
-<ul class="user_range">
-  <% if @top_ranges.present? %>
-    <%= render  "users/user_range_list" %>
-  <% else %>
-   
-  <% end %>
-</ul>
-
-<ul class="users">
-  <% if @users.present? %>
-    <%= render @users %>
-  <% else %>
-    <p><%= t ".no_result", result: params[:search] %>.</p>
-  <% end %>
-</ul>
-<%= will_paginate %>

@@ -9,10 +9,7 @@ class UsersController < ApplicationController
         .paginate page: params[:page], per_page: 10
     else
       @users = User.paginate page: params[:page], per_page: 10
-    end
-    @tmp_top =(User.joins('LEFT OUTER JOIN user_logs ON user_logs.user_id = users.id')).select('users.*, SUM(number_of_word) AS total_word ').group('users.id').order('total_word DESC').limit 10
-    @top_ranges=(@tmp_top)
-        .paginate page: params[:page], per_page: 10
+    end    
   end
 
   def new
